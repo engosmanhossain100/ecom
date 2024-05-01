@@ -1,0 +1,28 @@
+const SubCategory = require("../model/subCategoryModel");
+
+let addSubCategoryController = async (req, res) => {
+    const { name,categoryId } = req.body;
+
+    // console.log(name.toLowerCase());
+    
+    let existingCategory = await SubCategory.find({name: name.toLowerCase()});
+
+    // console.log(existingCategory);
+
+    if(existingCategory.length > 0) {
+        return res.status(401).json({
+            message : `Subcategory ${name} Already Exists`
+        })
+         
+    } else {
+        let category = new SubCategory({
+            name: name.toLowerCase(),
+            categoryId: categoryId
+        });
+        category.save()
+        res.send({success : "Subcategory Created Successfully"})
+    }
+
+};
+
+module.exports = addSubCategoryController
