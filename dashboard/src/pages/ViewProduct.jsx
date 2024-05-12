@@ -35,7 +35,7 @@ const ViewProduct = () => {
           title: 'Image',
           dataIndex: 'image',
           key: 'image',
-          render: (_, record) => (  <a>Invite {record.image}</a> )
+          render: (_, record) =>  <img width={50} src={`http://localhost:8000${record.image}`}/>,
         },
       ];
  

@@ -13,7 +13,8 @@ import AddSubCategory from './pages/AddSubCategory';
 import ViewCategory from './pages/ViewCategory';
 import ViewSubCategory from './pages/ViewSubCategory';
 import AddProduct from './pages/AddProduct';
-import ViewProduct from './pages/ViewProduuct';
+import ViewProduct from './pages/ViewProduct';
+
 
 
 
