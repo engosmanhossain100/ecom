@@ -3,11 +3,7 @@ const SubCategory = require("../model/subCategoryModel");
 let addSubCategoryController = async (req, res) => {
     const { name,categoryId } = req.body;
 
-    // console.log(name.toLowerCase());
-    
     let existingCategory = await SubCategory.find({name: name.toLowerCase()});
-
-    // console.log(existingCategory);
 
     if(existingCategory.length > 0) {
         return res.status(401).json({

@@ -1,6 +1,7 @@
 const emailValidation = require("../Validations/emailValidation");
 const User = require("../model/userModel");
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 
 let loginController = async (req,res) =>{
@@ -23,9 +24,16 @@ let loginController = async (req,res) =>{
 
     if(findUser){
         bcrypt.compare(password, findUser.password, function(err, result) {
+
+            var token = jwt.sign({ id: findUser._id, email:findUser.email }, process.env.JWT_PASS, { expiresIn: "24h" });
+
             if (result) {
                 return res.status(200).json({
-                    message : `Login Successfully`
+                    message : `Login Successfully`,
+                    token : token,
+                    email : findUser.email,
+                    name : findUser.name,
+                    role : findUser.role
                 })
             } else {
                 return res.status(401).json({

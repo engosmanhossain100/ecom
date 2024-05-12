@@ -10,13 +10,13 @@ let linkvarificationController = async (req,res) =>{
     let findUser = await User.findOne({ email: decoded.email});
 
     if (!findUser.emailVerified) {
-        await User.findOneAndUpdate({ email:decoded.email }, {emailVerified:true});
-        res.send("otp milse")
+        await User.findOneAndUpdate({ email:decoded.email }, {otp: "", emailVerified:true});
+        res.send("link milse")
     } else {
-       res.send("otp mile nai");
+       res.send("link mile nai");
     }
 
-    // console.log(token);
+    console.log(token);
     console.log(decoded.email);
     
 }

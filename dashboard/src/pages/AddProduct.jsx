@@ -5,7 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 
-const AddCategory = () => {
+const AddProduct = () => {
+
+    let [image, setImage] = useState({})
 
   let userInfo = useSelector((state) => state.user.value)
  
@@ -17,16 +19,16 @@ const AddCategory = () => {
 
       try{
         setLoading(true);
-        let data = await axios.post("http://localhost:8000/api/v1/product/creatcategory",
+        let data = await axios.post("http://localhost:8000/api/v1/product/creatproduct",
          {
-           name:values.name, 
+           name: values.name, 
+           avatar: image,
          },
          {
-          headers:{
-            authorization : "000000",
-            token : userInfo.token
+          headers: {
+            'Content-Type': 'multipart/form-data'
           }
-         }
+         },
          
         )
         
@@ -64,6 +66,10 @@ const AddCategory = () => {
         console.log('Failed:', errorInfo);
       };
 
+      let handleChange = (e) => {
+console.log(e.target.files[0]);
+      }
+
   return (
     
     userInfo.role !== "user" &&   
@@ -89,16 +95,20 @@ const AddCategory = () => {
         <ToastContainer/>
 
         <Form.Item
-          label="category Name"
+          label="Product Name"
           name="name"
           rules={[
             {
               required: true,
-              message: 'Please input your category name!',
+              message: 'Please input your product name!',
             },
           ]}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item>
+        <input onChange={handleChange} type="file"/>
         </Form.Item>
 
         <Form.Item
@@ -111,9 +121,10 @@ const AddCategory = () => {
             Submit
           </Button>
         </Form.Item>
+
         </Form>
    
   )
 }
 
-export default AddCategory
+export default AddProduct

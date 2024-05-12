@@ -50,6 +50,7 @@ if (existingUser.length > 0) {
   bcrypt.hash(password, 10, async function(err, hash) {
 
     jwt.sign({ email: email }, process.env.JWT_PASS , async function(err, token)  {
+      
       const info = await transporter.sendMail({
         // from: 'engosmanhossain100@gmail.com', // sender address
         to: email, // list of receiver
@@ -57,7 +58,7 @@ if (existingUser.length > 0) {
         html: `<a href="http://localhost:5173/emailverification/${token}">Click Hare<a/>` // html body
         
       });
-   
+   console.log(token);
     });
     
     // setTimeout(async ()=>{

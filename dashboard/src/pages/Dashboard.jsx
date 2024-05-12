@@ -3,6 +3,7 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined} from '@ant-design/icon
 import { Menu } from 'antd';
 import { Col, Row } from 'antd';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
 
@@ -17,14 +18,21 @@ const Dashboard = () => {
       type,
     };
   }
+
+  let userInfo = useSelector((state) => state.user.value)
+
+  console.log(userInfo.role);
+
   const items = [
+    userInfo.role != "user" &&  
     getItem('Users', 'sub1', <MailOutlined />, [
       getItem('Add User', '1'),
       getItem('View User', '2'),
     ]),
 
+    userInfo.role != "user" &&  
     getItem('Product Two', 'sub2', <AppstoreOutlined />, [
-      getItem('Add Product', '3'),
+      getItem('Add Product', '/dashboard/addproduct'),
       getItem('View Product', '4'),
     ]),
 
@@ -32,6 +40,7 @@ const Dashboard = () => {
       type: 'divider',
     },
 
+    userInfo.role != "user" &&  
     getItem('Category Three', 'sub3', <SettingOutlined />, [
       getItem('Add Category', '/dashboard/addcategory'),
       getItem('View Category', '/dashboard/viewcategory'),
@@ -39,9 +48,16 @@ const Dashboard = () => {
       getItem('View Subcategory', '/dashboard/viewsubcategory'),
     ]),
 
+    userInfo.role != "user" &&  
     getItem('Discount Three', 'sub4', <SettingOutlined />, [
       getItem('Add Discount', '9'),
       getItem('View Discount', '10'),
+    ]),
+
+    userInfo.role == "user" &&  
+    getItem('My Profile', 'sub5', <SettingOutlined />, [
+      getItem('Purchase Details', '11'),
+      getItem('Profile', '12'),
     ]),
   ];
 
@@ -49,6 +65,9 @@ const Dashboard = () => {
     console.log('click ', e);
     navigate(e.key);
   };
+
+  
+  // console.log(userInfo);
 
   return (
     <>

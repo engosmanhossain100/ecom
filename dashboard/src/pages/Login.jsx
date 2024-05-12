@@ -3,6 +3,9 @@ import { Button, Checkbox, Form, Input, Alert, Space } from 'antd';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { activeUser } from '../slices/userSlices';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -11,9 +14,13 @@ const Login = () => {
     let [error, setError] = useState("")
     const [success, setSuccess] = useState('');
     let navigate = useNavigate()
+
+    const dispatch = useDispatch();
   
     const onFinish = async (values) => {
+
       try {
+
         setLoading(true);
         let data = await axios.post('http://localhost:8000/api/v1/auth/login',
         {
@@ -22,11 +29,16 @@ const Login = () => {
         },
         {
           headers:{
-            "Authorization": "000000"
+            "authorization": "000000"
           },
-        }
-        )
+        },
+        ) 
+        dispatch(activeUser(data.data))
+        localStorage.setItem("user", JSON.stringify(data.data))
+        console.log(data.data);
+        
         setLoading(false);
+        console.log(data);
         toast.success( "Login Successful", {
           position: "top-right",
           autoClose: 5000,
@@ -41,7 +53,6 @@ const Login = () => {
           //   navigate("/login")
           // }, 5000);
         setError('')
-        console.log(data);
       } catch (error) {
         setLoading(false);
         setSuccess('')
@@ -56,9 +67,9 @@ const Login = () => {
           theme: "colored",
           });
       }
+
       }
 
-      // console.log('Success:', values)
 
     const onFinishFailed = (errorInfo) => {
       console.log(errorInfo, "login failed");

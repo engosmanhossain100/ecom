@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const Newpassword = () => {
 
-  let navigate = useNavigate
+  let navigate = useNavigate();
 
     let params = useParams()
     let [loading,setLoading] = useState(false)
@@ -23,6 +23,7 @@ const Newpassword = () => {
 
     console.log(data);
     setLoading(false);
+    navigate('/login');
     };
 
     const onFinishFailed = (errorInfo) => {

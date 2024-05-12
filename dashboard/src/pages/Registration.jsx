@@ -28,7 +28,7 @@ const Registration = () => {
     },
     {
       headers:{
-        "Authorization": "000000"
+        "authorization": "000000"
       },
     }
     )

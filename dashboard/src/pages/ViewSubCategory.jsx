@@ -41,7 +41,7 @@ const ViewSubCategory = () => {
           },
           
         {
-          title: 'subcategory',
+          title: 'Subcategory',
           dataIndex: 'subcategory',
           key: 'subcategory',
         },

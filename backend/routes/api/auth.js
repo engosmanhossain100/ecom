@@ -9,6 +9,7 @@ const linkvarificationController = require('../../controllers/linkvarificationCo
 const newpassController = require('../../controllers/newpassController');
 const resentverifationController = require('../../controllers/resentverifationController');
 
+
 route.post('/registration', secureApi, registrationController);
 route.post('/login', loginController);
 route.post('/otpvarification', otpController);
