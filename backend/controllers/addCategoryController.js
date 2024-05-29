@@ -3,7 +3,7 @@ const Category = require("../model/categoryModel");
 let addCategoryController = async (req, res) => {
     const { name } = req.body;
     
-    let existingCategory = await Category.find({name: name.toLowerCase()});
+    let existingCategory = await Category.find({name: name.toLowerCase().trim()});
 
     if(existingCategory.length > 0) {
         return res.status(401).json({

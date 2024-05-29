@@ -4,16 +4,19 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const AddProduct = () => {
 
-    let [image, setImage] = useState({})
+  let [image, setImage] = useState({});
+  let [discription,setDiscription] = useState("");
 
-  let userInfo = useSelector((state) => state.user.value)
- 
-  let [loading,setLoading] = useState(false)
+  let userInfo = useSelector((state) => state.user.value);
+
+  let [loading,setLoading] = useState(false);
   const [success, setSuccess] = useState('');
-  let [error, setError] = useState("")
+  let [error, setError] = useState("");
 
     const onFinish = async (values) => {
 
@@ -21,7 +24,8 @@ const AddProduct = () => {
         setLoading(true);
         let data = await axios.post("http://localhost:8000/api/v1/product/creatproduct",
          {
-           name: values.name, 
+           name: values.name,
+           discription : discription,
            avatar: image,
          },
          {
@@ -29,14 +33,13 @@ const AddProduct = () => {
             'Content-Type': 'multipart/form-data'
           }
          },
-         
         )
         
        console.log(data);
        console.log('Success:', values);
 
       setLoading(false);
-      toast.success( "category created successfully", {
+      toast.success( "Product created successfully", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -67,7 +70,7 @@ const AddProduct = () => {
       };
 
       let handleChange = (e) => {
-console.log(e.target.files[0]);
+      setImage(e.target.files[0]);
       }
 
   return (
@@ -106,6 +109,24 @@ console.log(e.target.files[0]);
         >
           <Input />
         </Form.Item>
+        
+        <CKEditor
+                    editor={ ClassicEditor }
+                    data="<p>Osman</p>"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                      setDiscription(editor.getData());
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
 
         <Form.Item>
         <input onChange={handleChange} type="file"/>

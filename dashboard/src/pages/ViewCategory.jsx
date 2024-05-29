@@ -1,11 +1,30 @@
 import { Table } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import { Button, Modal,  Checkbox, Form, Input } from 'antd';
 
 const ViewCategory = () => {
 
   let [catlist, setcatlist] = useState([]);
+  
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
     useEffect(()=>{
         async function allcat(){
@@ -25,6 +44,23 @@ const ViewCategory = () => {
         allcat();
        },[])
 
+       const handleClick = async (record) => {
+        let data = await axios.post("http://localhost:8000/api/v1/product/approvecreatcategory",
+          {
+            id: record.key,
+            status: record.status 
+          },
+        )
+        console.log(data);
+       }
+
+       const handleDelete = async (id) => {
+        let data = await axios.delete(`http://localhost:8000/api/v1/product/deletecategory/${id}`,
+        )
+        console.log(data);
+       }
+
+
       const columns = [
         {
           title: 'Name',
@@ -36,11 +72,63 @@ const ViewCategory = () => {
           dataIndex: 'status',
           key: 'status',
         },
-        // {
-        //   title: 'Address',
-        //   dataIndex: 'address',
-        //   key: 'address',
-        // },
+        {
+          title: 'Action',
+          dataIndex: 'action',
+          key: 'action',
+          render: (_, record) =>
+             <>
+
+             
+             <Button onClick={()=>handleClick(record)}>{record.status == "waiting" ? "Approve" : "Reject"}</Button>
+             <Button onClick={()=>handleDelete(record.key)}>Delete</Button>
+             <Button type="primary" onClick={showModal}>Edit</Button>
+             <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+             <Form
+    name="basic"
+    labelCol={{
+      span: 8,
+    }}
+    wrapperCol={{
+      span: 16,
+    }}
+    style={{
+      maxWidth: 600,
+    }}
+    initialValues={{
+      remember: true,
+    }}
+    onFinish={onFinish}
+    onFinishFailed={onFinishFailed}
+    autoComplete="off"
+  >
+    <Form.Item
+      label="Name"
+      name="name"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your name!',
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      wrapperCol={{
+        offset: 8,
+        span: 16,
+      }}
+    >
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+            </Modal>
+             </>
+        },
       ];
  
 

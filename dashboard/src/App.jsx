@@ -16,8 +16,6 @@ import AddProduct from './pages/AddProduct';
 import ViewProduct from './pages/ViewProduct';
 
 
-
-
 const router = createBrowserRouter(
   createRoutesFromElements(
 
