@@ -9,6 +9,7 @@ const ViewProduct = () => {
 
     useEffect(()=>{
         async function allcat(){
+          
          let data = await axios.get("http://localhost:8000/api/v1/product/allpro");
  
          let catedata= []
@@ -44,6 +45,7 @@ const ViewProduct = () => {
         }
         allcat();
        },[])
+
 
       const columns = [
         {

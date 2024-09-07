@@ -12,7 +12,9 @@ let addCategoryController = async (req, res) => {
          
     } else {
         let category = new Category({
-            name: name.toLowerCase()
+            name: name.toLowerCase(),
+            image: `/uploads/${req.file.filename}`,
+
         })
         category.save()
         res.send({success : "category created successfully"})

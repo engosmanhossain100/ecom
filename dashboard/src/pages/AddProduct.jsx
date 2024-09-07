@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Button, Checkbox, Form, Input, Select } from 'antd';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,8 +9,37 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const AddProduct = () => {
 
-  let [image, setImage] = useState({});
+  let [image, setImage] = useState([]);
   let [discription,setDiscription] = useState("");
+  let [showslug, setShowSlug ] = useState ("");
+  let [catlist, setcatlist] = useState([]);
+  let [type, setType] = useState("");
+  let [proType, setProType] = useState([
+    {
+      value: 'normal',
+      label: 'normal',
+    },
+    {
+      value: 'top',
+      label: 'top',
+    },
+    {
+      value: 'new',
+      label: 'new',
+    },
+    {
+      value: 'feature',
+      label: 'feature',
+    },
+    {
+      value: 'flash',
+      label: 'flash',
+    },
+
+  ]);
+  let [subCatlist, setSubCatList] = useState([]);
+  let [catid, setCatId] = useState('');
+  let [subCatid, setSubCatId] = useState('');
 
   let userInfo = useSelector((state) => state.user.value);
 
@@ -20,14 +49,27 @@ const AddProduct = () => {
 
     const onFinish = async (values) => {
 
+      let formData = new FormData ()
+
+      formData.append("name", values.name)
+      formData.append("discription", discription)
+      formData.append("regularprice", values.regularprice)
+      formData.append("discount", values.discount)
+      formData.append("slug", values.name.split(" ").join("-").toLowerCase())
+      formData.append("catId", catid)
+      formData.append("proType", type)
+
+      image.forEach(file=>{
+        formData.append("photos", file)
+      
+      })
+
       try{
         setLoading(true);
         let data = await axios.post("http://localhost:8000/api/v1/product/creatproduct",
-         {
-           name: values.name,
-           discription : discription,
-           avatar: image,
-         },
+         
+        formData,
+
          {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -70,9 +112,56 @@ const AddProduct = () => {
       };
 
       let handleChange = (e) => {
-      setImage(e.target.files[0]);
+
+        let arr = Array.from(e.target.files)
+
+        setImage(arr);
       }
 
+
+      let handleSlug = (e) => {
+        setShowSlug(e.target.value.split(" ").join("-").toLowerCase())
+      }
+
+      useEffect(()=>{
+        async function allcat(){
+         let data = await axios.get("http://localhost:8000/api/v1/product/allcat");
+ 
+         let catedata= []
+ 
+         data.data.map((item)=>{
+           catedata.push({
+             value: item._id,
+             label: item.name,
+           });
+         });
+          setcatlist(catedata);
+        }
+        allcat();
+       },[])
+
+
+       let handleChangeCatId = async (e) => {        
+        let data = await axios.get(`http://localhost:8000/api/v1/product/singlesubcat/${e}`);
+ 
+        let catedata= [];
+
+        data.data.map((item)=>{
+          catedata.push({
+            value: item._id,
+            label: item.name,
+          });
+        });
+        setSubCatList(catedata);
+        setCatId(e);
+       }
+
+       let handleChangeProType = (e) => {
+        console.log(e);
+        setType(e);
+       }
+      
+       
   return (
     
     userInfo.role !== "user" &&   
@@ -107,8 +196,86 @@ const AddProduct = () => {
             },
           ]}
         >
+          <Input onChange={handleSlug} />
+        </Form.Item>
+
+        <Form.Item
+          label="Slug"
+          name="slug"
+          rules={[
+            {
+              message: 'Slug',
+            },
+          ]}
+        >
+          <Input placeholder={showslug} disabled/>
+        </Form.Item>
+
+        <Form.Item
+          label="Product Price"
+          name="price"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your product price!',
+            },
+          ]}
+        >
           <Input />
         </Form.Item>
+
+        <Form.Item
+          label="Product Discount in taka"
+          name="discount"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your product discount!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+         
+         <label>select for section</label>
+         <Form.Item>
+    <Select
+      style={{
+        width: 120,
+      }}
+      onChange={handleChangeProType}
+      options={proType}
+    />
+         </Form.Item>
+
+        <Form.Item>
+    <Select
+      defaultValue="Category"
+      style={{
+        width: 120,
+      }}
+      onChange={handleChangeCatId}
+      options={catlist}
+    />
+        </Form.Item>
+
+    {
+
+     subCatlist.length > 0 && 
+        
+        <Form.Item>
+    <Select
+      defaultValue="SubCategory"
+      style={{
+        width: 120,
+      }}
+      onChange={handleChangeCatId}
+      options={subCatlist}
+    />
+        </Form.Item>
+    
+    }
+        
         
         <CKEditor
                     editor={ ClassicEditor }
@@ -126,10 +293,10 @@ const AddProduct = () => {
                     onFocus={ ( event, editor ) => {
                         console.log( 'Focus.', editor );
                     } }
-                />
+        />
 
         <Form.Item>
-        <input onChange={handleChange} type="file"/>
+        <input onChange={handleChange} type="file" multiple/>
         </Form.Item>
 
         <Form.Item
@@ -146,6 +313,9 @@ const AddProduct = () => {
         </Form>
    
   )
+
 }
+
+
 
 export default AddProduct

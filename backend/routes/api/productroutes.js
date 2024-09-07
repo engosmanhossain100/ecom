@@ -24,18 +24,22 @@ const productController = require('../../controllers/productController');
 const allProController = require('../../controllers/allProController');
 const deleteCategory = require('../../controllers/deleteCategory.js');
 const approveCreatcategory = require('../../controllers/approveCreatcategory.js');
+const editCategoryController = require('../../controllers/editCat.js');
+const singlePro = require('../../controllers/singlePro.js');
+const singleSubCat = require('../../controllers/singleSubCat.js');
 
 
-
-
-route.post('/creatcategory', secureApi , verifyToken,  addCategoryController);
+route.post('/creatcategory', secureApi , verifyToken, upload.single('avatar'), addCategoryController);
 route.post('/approvecreatcategory', approveCreatcategory);
-route.post('/creatsubcategory', addSubCategoryController);
-route.post('/creatproduct',upload.single('avatar'), productController);
+route.post('/creatsubcategory', upload.single('avatar'), addSubCategoryController);
+route.post('/creatproduct',upload.array('photos', 12), productController);
+route.post('/editcat', editCategoryController);
 route.delete('/deletecategory/:id', deleteCategory);
 
 route.get('/allpro', allProController);
 route.get('/allcat', viewCategoryController);
 route.get('/allsubcat', viewSubCategoryController);
+route.get('/singlepro/:slug', singlePro);
+route.get('/singlesubcat/:id', singleSubCat);
 
 module.exports = route

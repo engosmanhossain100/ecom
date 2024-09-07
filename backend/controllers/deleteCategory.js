@@ -4,7 +4,7 @@ let deleteCategory = async (req, res) => {
 
     console.log(req.params);
 
-    await   Category.findOneAndDelete(req.params.id);
+    await Category.findOneAndDelete(req.params.id);
 
     
  res.send("delete category")

@@ -12,17 +12,21 @@ const AddCategory = () => {
   let [loading,setLoading] = useState(false)
   const [success, setSuccess] = useState('');
   let [error, setError] = useState("")
+  let [image, setImage] = useState({});
 
     const onFinish = async (values) => {
 
       try{
+        
         setLoading(true);
         let data = await axios.post("http://localhost:8000/api/v1/product/creatcategory",
          {
            name:values.name, 
+           avatar: image,
          },
          {
           headers:{
+            'Content-Type': 'multipart/form-data',
             authorization : "000000",
             token : userInfo.token
           }
@@ -64,6 +68,10 @@ const AddCategory = () => {
         console.log('Failed:', errorInfo);
       };
 
+      let handleChange = (e) => {
+        setImage(e.target.files[0]);
+        }
+
   return (
     
     userInfo.role !== "user" &&   
@@ -99,6 +107,10 @@ const AddCategory = () => {
           ]}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item>
+        <input onChange={handleChange} type="file"/>
         </Form.Item>
 
         <Form.Item

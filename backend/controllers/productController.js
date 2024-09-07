@@ -2,14 +2,21 @@ const Product = require("../model/product");
 
 let productController = async (req, res) => {
 
-    const { name , discription} = req.body;
+    const { name , discription, slug, catId, proType} = req.body;
 
-    console.log(req.file);
+        let arr = []
+
+        req.files.map(item=>{
+            arr.push(`/uploads/${item.filename}`)
+        })
 
         let product = new Product({
             name: name,
             discription : discription,
-            image: `/uploads/${req.file.filename}`,
+            image: arr,
+            slug: slug,
+            catId: catId,
+            proType : proType
         });
         
         product.save()

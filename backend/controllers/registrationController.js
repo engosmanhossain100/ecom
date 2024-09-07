@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "engosmanhossain100@gmail.com",
-    pass: "iqjm qcbp yfal cgqd",
+    pass: "iqjmqcbpyfalcgqd",
   },
 });
 
@@ -42,6 +42,7 @@ if (!emailValidation(email)) {
 
 let existingUser = await User.find({email:email})
 
+
 if (existingUser.length > 0) {
   return res.status(400).json({ 
     message : `Email already exists`
@@ -49,7 +50,7 @@ if (existingUser.length > 0) {
   let otp =  otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
   bcrypt.hash(password, 10, async function(err, hash) {
 
-    jwt.sign({ email: email }, process.env.JWT_PASS , async function(err, token)  {
+    jwt.sign({ email: email }, process.env.JWT_PASS , async function(err, token){
       
       const info = await transporter.sendMail({
         // from: 'engosmanhossain100@gmail.com', // sender address

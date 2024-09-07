@@ -5,22 +5,38 @@ import { Button, Modal,  Checkbox, Form, Input } from 'antd';
 
 const ViewCategory = () => {
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [initialValues, setInitialValues] = useState([]);
   let [catlist, setcatlist] = useState([]);
-  
-  const onFinish = (values) => {
-    console.log('Success:', values);
+
+  const onFinish = async (values) => {
+    let data = await axios.post('http://localhost:8000/api/v1/product/editcat',
+  {
+     oldname : initialValues[0].value,
+     name : values.name,
+  },
+  )
   };
+
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+  const showModal = (record) => {
     setIsModalOpen(true);
+    setInitialValues([
+      {
+        name : ["name"],
+        value : record.name,
+      },
+    ]);
   };
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -62,30 +78,34 @@ const ViewCategory = () => {
 
 
       const columns = [
+
         {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
         },
+
         {
           title: 'Status',
           dataIndex: 'status',
           key: 'status',
         },
+
         {
           title: 'Action',
           dataIndex: 'action',
           key: 'action',
           render: (_, record) =>
              <>
-
-             
              <Button onClick={()=>handleClick(record)}>{record.status == "waiting" ? "Approve" : "Reject"}</Button>
              <Button onClick={()=>handleDelete(record.key)}>Delete</Button>
-             <Button type="primary" onClick={showModal}>Edit</Button>
+
+             <Button type="primary" onClick={()=>showModal(record)}>Edit</Button>
+
              <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
              <Form
     name="basic"
+    fields={initialValues}
     labelCol={{
       span: 8,
     }}
@@ -122,13 +142,14 @@ const ViewCategory = () => {
       }}
     >
       <Button type="primary" htmlType="submit">
-        Submit
+        Change
       </Button>
     </Form.Item>
   </Form>
             </Modal>
              </>
         },
+
       ];
  
 

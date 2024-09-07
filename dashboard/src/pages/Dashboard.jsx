@@ -72,6 +72,7 @@ const Dashboard = () => {
   return (
     <>
     <Row >
+      
       <Col span={5}>
       <Menu
     onClick={onClick}
@@ -84,9 +85,11 @@ const Dashboard = () => {
     items={items}
   />
       </Col>
+
       <Col span={19}>
         <Outlet/>
       </Col>
+
     </Row>
   </>
   
