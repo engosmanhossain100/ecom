@@ -33,9 +33,6 @@ const AddCategory = () => {
          }
          
         )
-        
-       console.log(data);
-       console.log('Success:', values);
 
       setLoading(false);
       toast.success( "category created successfully", {

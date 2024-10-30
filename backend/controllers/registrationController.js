@@ -47,7 +47,9 @@ if (existingUser.length > 0) {
   return res.status(400).json({ 
     message : `Email already exists`
 })} else {
+  
   let otp =  otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
+
   bcrypt.hash(password, 10, async function(err, hash) {
 
     jwt.sign({ email: email }, process.env.JWT_PASS , async function(err, token){

@@ -12,7 +12,8 @@ const AddProduct = () => {
   let [image, setImage] = useState([]);
   let [discription,setDiscription] = useState("");
   let [showslug, setShowSlug ] = useState ("");
-  let [catlist, setcatlist] = useState([]);
+
+
   let [type, setType] = useState("");
   let [proType, setProType] = useState([
     {
@@ -37,9 +38,13 @@ const AddProduct = () => {
     },
 
   ]);
+  let [catlist, setcatlist] = useState([]);
+  
+
   let [subCatlist, setSubCatList] = useState([]);
   let [catid, setCatId] = useState('');
-  let [subCatid, setSubCatId] = useState('');
+
+  // let [subCatid, setSubCatId] = useState('');
 
   let userInfo = useSelector((state) => state.user.value);
 
@@ -157,7 +162,6 @@ const AddProduct = () => {
        }
 
        let handleChangeProType = (e) => {
-        console.log(e);
         setType(e);
        }
       
@@ -197,6 +201,7 @@ const AddProduct = () => {
           ]}
         >
           <Input onChange={handleSlug} />
+          
         </Form.Item>
 
         <Form.Item
@@ -213,7 +218,7 @@ const AddProduct = () => {
 
         <Form.Item
           label="Product Price"
-          name="price"
+          name="regularprice"
           rules={[
             {
               required: true,
@@ -221,7 +226,7 @@ const AddProduct = () => {
             },
           ]}
         >
-          <Input />
+          <Input type='number'/>
         </Form.Item>
 
         <Form.Item
@@ -234,18 +239,20 @@ const AddProduct = () => {
             },
           ]}
         >
-          <Input />
+          <Input type='number'/>
         </Form.Item>
          
          <label>select for section</label>
+
          <Form.Item>
-    <Select
-      style={{
-        width: 120,
-      }}
-      onChange={handleChangeProType}
-      options={proType}
-    />
+          
+            <Select
+              style={{
+                width: 120,
+              }}
+              onChange={handleChangeProType}
+              options={proType}
+            />
          </Form.Item>
 
         <Form.Item>

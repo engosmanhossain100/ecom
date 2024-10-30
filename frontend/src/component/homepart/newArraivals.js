@@ -4,6 +4,7 @@ import Headviewall from '../headviewall/headviewall'
 import './style.css'
 import Images from 'next/image'
 import { newArraivals } from './categoryData'
+import Image from 'next/image'
 
 async function getData() {
     let data = await fetch('http://localhost:8000/api/v1/product/allpro')
@@ -17,8 +18,6 @@ async function getData() {
 async function NewArraivals() {
 
     let data = await getData();
-    console.log(data);
-    
 
   return (
     <div className='arrivals-part'>
@@ -33,20 +32,23 @@ async function NewArraivals() {
                     item.proType == "new" && 
 
                     <div className='items-list' key={i}>
+
                         <div className='items-img'>
-                            <Images src={`http://localhost:8000${item.image[0]}`} width={230} height={290} alt='newArraivals'/>
+                            <Image src={`http://localhost:8000${item.image[0]}`} width={230} height={290} alt='newArraivals'/>
                             <div className='item-tag'>
                                 <p>{item.proType}</p>
                             </div>
                         </div>
+                        
                         <div className='item-text'>
                             <h4>{item.name}</h4>
                             <h3>100$</h3>
                             <div className='rating'>
-                                <Images src={item.star} width={20} height={20} alt='star'/>
+                                <Image src={item.star} width={20} height={20} alt='star'/>
                                 <p>10</p>
                             </div>
                         </div>
+
                     </div>
                 ))
             }

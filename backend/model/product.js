@@ -11,7 +11,7 @@ const productSchema = new Schema({
     proType : String,
     catId : {
         type: Schema.Types.ObjectId,
-        ref:"category" 
+        ref:"Category" 
     },
 
 });

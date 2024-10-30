@@ -17,6 +17,7 @@ const Registration = () => {
   let navigate = useNavigate()
 
   const onFinish = async (values) => {
+    
     try {
       
    setLoading(true);

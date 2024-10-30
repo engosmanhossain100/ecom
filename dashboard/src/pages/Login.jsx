@@ -33,12 +33,12 @@ const Login = () => {
           },
         },
         ) 
+        
         dispatch(activeUser(data.data))
         localStorage.setItem("user", JSON.stringify(data.data))
-        console.log(data.data);
         
         setLoading(false);
-        console.log(data);
+        
         toast.success( "Login Successful", {
           position: "top-right",
           autoClose: 5000,

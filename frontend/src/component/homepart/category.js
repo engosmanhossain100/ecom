@@ -18,7 +18,9 @@ export default async function Category() {
 
   return (
     <div className='category-part'>
+
       <HeadName>Category</HeadName>
+      
       <div className='category-item'>
         {
             data.map((item, i)=>(

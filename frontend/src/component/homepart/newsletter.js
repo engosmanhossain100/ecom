@@ -1,6 +1,7 @@
 import React from 'react'
 import Images from 'next/image'
 import Container from '../container/Container'
+import Image from 'next/image'
 
 function Newsletter() {
   return (
@@ -8,7 +9,7 @@ function Newsletter() {
         <Container>
             <div className='news-element'>
                 <div className='news-text'>
-                    <Images src='/Newsletter.svg' width={96} height={96} alt='newsletter'/>
+                    <Image src='/Newsletter.svg' width={96} height={96} alt='newsletter'/>
                     <div className='text-part'>
                         <h3>Join our newsletter now!</h3>
                         <p>Register now and get our latest updates and promos.</p>

@@ -18,7 +18,7 @@ let addCategoryController = async (req, res) => {
         })
         category.save()
         res.send({success : "category created successfully"})
-    }
+    }    
 
 };
 

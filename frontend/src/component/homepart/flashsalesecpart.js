@@ -4,6 +4,7 @@ import Images from 'next/image'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { flashsale } from './categoryData';
 import Slider from "react-slick";
+import Image from 'next/image';
 
 {/* <div className='flash-sec-part'>
 {flashsale.map((item, i)=>(
@@ -53,7 +54,7 @@ function Flashsalesecpart() {
         <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
-                    <Images src='/arraivals 1.png' width={500} height={350} alt='flashSale' />
+                    <Image src='/arraivals 1.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
                     <p>45% OFF</p>
@@ -73,7 +74,7 @@ function Flashsalesecpart() {
         <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
-                    <Images src='/arraivals 7.png' width={500} height={350} alt='flashSale' />
+                    <Image src='/arraivals 7.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
                     <p>45% OFF</p>
@@ -93,7 +94,7 @@ function Flashsalesecpart() {
         <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
-                    <Images src='/arraivals 6.png' width={500} height={350} alt='flashSale' />
+                    <Image src='/arraivals 6.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
                     <p>45% OFF</p>
@@ -113,7 +114,7 @@ function Flashsalesecpart() {
         <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
-                    <Images src='/Offers_2.png' width={500} height={350} alt='flashSale' />
+                    <Image src='/Offers_2.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
                     <p>45% OFF</p>
@@ -133,7 +134,7 @@ function Flashsalesecpart() {
         <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
-                    <Images src='/arraivals 5.png' width={500} height={350} alt='flashSale' />
+                    <Image src='/arraivals 5.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
                     <p>45% OFF</p>
@@ -153,7 +154,7 @@ function Flashsalesecpart() {
             <div className='flash-sec-part'>
                 <div className='sec-items'>
                     <a href='/pages/product'>
-                        <Images src='/arraivals 4.png' width={500} height={350} alt='flashSale' />
+                        <Image src='/arraivals 4.png' width={500} height={350} alt='flashSale' />
                     </a>
                     <div className='flash-tag'>
                         <p>45% OFF</p>

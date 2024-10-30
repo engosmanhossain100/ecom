@@ -9,6 +9,7 @@ let param = useParams()
 let navigate = useNavigate()
 
 useEffect (()=>{
+  
  async function verify() {
   let data = await axios.post('http://localhost:8000/api/v1/auth/linkvarification',
   {
@@ -21,9 +22,6 @@ useEffect (()=>{
  }
  verify()
 })
-
-console.log(param);
-console.log(param.token);
 
   return (
     <div>Loading....</div>

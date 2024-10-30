@@ -1,8 +1,11 @@
+
 import React from 'react'
 import Headviewall from '../headviewall/headviewall'
 import HeadName from '../headname/headname'
-import Images from 'next/image'
 import { toprateproduct } from './categoryData'
+import Link from 'next/link'
+import Image from 'next/image'
+import Button from '../button'
 
 async function getData() {
     let data = await fetch('http://localhost:8000/api/v1/product/allpro')
@@ -13,10 +16,11 @@ async function getData() {
     return data;
   }
 
-async function TopRateProduct() {
 
+async function Toprateproduct () {
+
+    
     let data = await getData();
-    console.log(data);
 
   return (
     <div className='top-product'>
@@ -31,18 +35,23 @@ async function TopRateProduct() {
                     item.proType == "top" && 
 
                     <div className='prdct-item' key={i}>
-                    <images src={`http://localhost:8000${item.image[1]}`} width={247} height={247} style={{borderRadius: "15px"}} alt='product-img'/>
+
+                    <Image src={`http://localhost:8000${item.image[0]}`} width={247} height={247} style={{borderRadius: "15px"}} alt='product-img'/>
+                    
                     <div className='product-text'>
-                        <h4>{item.name}</h4>
+                       
+                        <h4><Link href={`/pages/product/${item.slug}`}>{item.name}</Link></h4>
                         <p>demo text</p>
                         <div className='star-sold'>
-                            <Images src={item.img2} width={15} height={15} alt='star'/>
-                            <span>4</span>
+                            <Image src={item.img2} width={15} height={15} alt='star'/>
+                            <span>{item.discount ? <p><del style={{color:"red"}}>{item.regularprice - item.discount}</del></p> : item.regularprice}</span>
                         </div>
+
                         <div className='btn'>
-                            <a href='/pages/cart'><button>Add to Cart</button></a>
-                            <Images src='/love.png' width={24} height={24} style={{marginLeft: "30px"}} alt='love'/>
+                            <Button item={item._id} />
+                            <Image src='/love.png' width={24} height={24} style={{marginLeft: "30px"}} alt='love'/>
                         </div>
+
                     </div>
                 </div>
                 ))
@@ -52,4 +61,5 @@ async function TopRateProduct() {
   )
 }
 
-export default TopRateProduct
+
+export default Toprateproduct

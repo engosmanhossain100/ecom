@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
-import Images from 'next/image'
+"use client"
 
-function Productdetailsright() {
+import React, { useState } from 'react'
+import Image from 'next/image'
+
+function Productdetailsright({data}) {
   const [count, setCount] = useState(0)
 
   const handleminusclick = ()=> {
@@ -28,33 +30,45 @@ function Productdetailsright() {
       <div className='ratings'>
         <div className='rate-star'>
           <p>5.0</p>
-          <Images src='/rating.png' width={100} height={20} alt='rating-img' />
+          <Image src='/rating.png' width={100} height={20} alt='rating-img' />
           <span>Review(12) | Sold 99</span>
         </div>
         <div className='star-wish'>
-          <Images src='/Love (1).png' width={22} height={22} alt='rate-img'/>
+          <Image src='/Love (1).png' width={22} height={22} alt='rate-img'/>
           <span>Add to Wishlist</span>
         </div>
       </div>
 
       <div className='product-heading'>
-        <h3>Wireless Microphone</h3>
+        <h3>{data[0].name}</h3>
+
         <div className='rate-percent'>
-          <p>$29.00</p>
-          <span>$99.00</span>
-          <button>Save 50%</button>
+        {
+          data[0].discount
+
+          ?
+          <>
+            <p>${Number(data[0].regularprice) - Number(data[0].discount)}</p>
+            <span>${Number(data[0].regularprice)}</span>
+            <button>Save {Math.floor((Number(data[0].discount)/Number(data[0].regularprice)*100))}%</button>
+          </>
+          
+          :
+          <p>{Number(data[0].regularprice)}</p>
+        } 
         </div>
+
         <div className='delivery-voucher-stock'>
           <div className='delivery'>
-              <Images src='/Fast Delivery.svg' width={30} height={30} alt='fast-delivery'/>
+              <Image src='/Fast Delivery.svg' width={30} height={30} alt='fast-delivery'/>
               <span>Free Delivery</span>
           </div>
           <div className='delivery'>
-              <Images src='/voucher.svg' width={30} height={30} alt='fast-delivery'/>
+              <Image src='/voucher.svg' width={30} height={30} alt='fast-delivery'/>
               <span>Available Voucher</span>
           </div>
           <div className='delivery'>
-              <Images src='/Package.svg' width={30} height={30} alt='fast-delivery'/>
+              <Image src='/Package.svg' width={30} height={30} alt='fast-delivery'/>
               <span>In Stock</span>
           </div>
         </div>
@@ -62,7 +76,7 @@ function Productdetailsright() {
 
       <div className='product-description'>
         <h4>Description</h4>
-        <p>Wireless Microphone with the new style, shockproof, clear voice reception that suitable for recording, online meeting, vlogging, and calling. Free casing with high-quality zipper.</p>
+        <p>{data[0].discription}</p>
       </div>
 
     <div className='qnty-chrt'>

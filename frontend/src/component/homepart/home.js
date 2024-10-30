@@ -11,7 +11,19 @@ import TopRateProduct from './toprateproduct'
 import FooterElements from './footerelements'
 import Container from '../container/Container'
 
-function Homepart() {
+// async function getData() {
+//   let data = await fetch('http://localhost:8000/api/v1/product/allflash')
+//   .then((res)=>
+//   res.json()
+//   )
+
+//   return data;
+// }
+
+async function Homepart() {
+
+  // let data = await getData();
+
   return (
     <div>
       <Container>
@@ -19,7 +31,8 @@ function Homepart() {
         <Hero/>
         <Category/>
         <NewArraivals/>
-        <FlashSale/>
+        {/* <FlashSale time={data[0]?.time}/> */}
+        <FlashSale />
         <Companyname/>
         <Quality/>
         <Collection/>

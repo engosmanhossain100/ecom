@@ -21,7 +21,6 @@ const Newpassword = () => {
     },
     )
 
-    console.log(data);
     setLoading(false);
     navigate('/login');
     };

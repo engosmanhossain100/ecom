@@ -67,13 +67,11 @@ const ViewCategory = () => {
             status: record.status 
           },
         )
-        console.log(data);
        }
 
        const handleDelete = async (id) => {
         let data = await axios.delete(`http://localhost:8000/api/v1/product/deletecategory/${id}`,
         )
-        console.log(data);
        }
 
 
@@ -97,12 +95,15 @@ const ViewCategory = () => {
           key: 'action',
           render: (_, record) =>
              <>
+
              <Button onClick={()=>handleClick(record)}>{record.status == "waiting" ? "Approve" : "Reject"}</Button>
              <Button onClick={()=>handleDelete(record.key)}>Delete</Button>
 
              <Button type="primary" onClick={()=>showModal(record)}>Edit</Button>
 
              <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+
+
              <Form
     name="basic"
     fields={initialValues}
@@ -145,7 +146,9 @@ const ViewCategory = () => {
         Change
       </Button>
     </Form.Item>
-  </Form>
+             </Form>
+
+
             </Modal>
              </>
         },

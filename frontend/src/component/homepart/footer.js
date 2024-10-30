@@ -8,7 +8,7 @@ import { companytitle, infotitle } from './categoryData';
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
-import Images from 'next/image';
+import Image from 'next/image';
 
 function Footer() {
   return (
@@ -74,7 +74,7 @@ function Footer() {
                 <p>Copyright © 2021 Tronix. All Right Reseved</p>
             </div>
             <div className='card-item'>
-                <Images src='/payment.png' width={130} height={32} alt='vector'/>
+                <Image src='/payment.png' width={130} height={32} alt='vector'/>
             </div>
         </div>
         </Container>

@@ -19,8 +19,6 @@ let existingUser = await User.find({email:email})
 
 if(existingUser.length > 0) {
 
-console.log(existingUser);
-
 jwt.sign({ email: email }, process.env.JWT_PASS , async function(err, token)  {
   
     const info = await transporter.sendMail({

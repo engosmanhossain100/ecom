@@ -21,7 +21,6 @@ const Dashboard = () => {
 
   let userInfo = useSelector((state) => state.user.value)
 
-  console.log(userInfo.role);
 
   const items = [
     userInfo.role != "user" &&  

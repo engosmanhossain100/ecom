@@ -2,7 +2,7 @@ const Product = require("../model/product");
 
 let productController = async (req, res) => {
 
-    const { name , discription, slug, catId, proType} = req.body;
+    const { name , discription, slug, catId, proType, regularprice, discount} = req.body;
 
         let arr = []
 
@@ -16,8 +16,12 @@ let productController = async (req, res) => {
             image: arr,
             slug: slug,
             catId: catId,
-            proType : proType
+            proType : proType,
+            regularprice : regularprice,
+            discount : discount
         });
+
+
         
         product.save()
         res.send({success : "Product created successfully"})

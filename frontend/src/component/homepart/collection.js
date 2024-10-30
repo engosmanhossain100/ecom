@@ -1,8 +1,8 @@
 import React from 'react'
 import Headviewall from '../headviewall/headviewall'
 import HeadName from '../headname/headname'
-import Images from 'next/image'
 import { collection } from './categoryData'
+import Image from 'next/image'
 
 async function getData() {
     let data = await fetch('http://localhost:8000/api/v1/product/allpro')
@@ -38,11 +38,11 @@ async function Collection() {
                 {
                     data.map((item, i)=> (
 
-                        item.proType = "feature" &&
+                        item.proType == "feature" &&
 
                         <div className='item-details' key={i}>
                         <div className='item-img-tag'>
-                            <images src={`http://localhost:8000${item.image[2]}`} width={376} height={333} alt='collection-img'/>
+                            <Image src={`http://localhost:8000${item.image[0]}`} width={376} height={333} alt='collection-img'/>
                             <div className='sold-tag'>
                                 <p>{item.proType}</p>
                                 <p className='coll-discount'>-10%</p>

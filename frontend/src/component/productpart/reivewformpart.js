@@ -3,20 +3,41 @@ import { reviewform } from '@/validationform/Yup';
 import { useFormik } from 'formik';
 import Image from 'next/image';
 import React, { useState } from 'react'
+import ReviewStar from 'review-star';
 
-function Reivewformpart() {
+function Reivewformpart({data}) {
+
+  const [reVal, setReVal] = useState(0);   
 
   const formik = useFormik({
+
     initialValues: {
       email: '',
       name: '',
       comment: '',
     },
+
     validationSchema: reviewform,
-    onSubmit: values => {
-      console.log(values);
+
+    onSubmit : async values => {
+
+      console.log(data ,"asdkjaskjd");
       
+ 
+      const rawResponse = await fetch('http://localhost:8000/api/v1/product/review', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...values,rating:reVal,productId:data[0]?._id})
+      });
+      const content = await rawResponse.json();
+    
+      console.log(content);
+   
     },
+    
   });
 
   const {errors, touched} = formik;
@@ -46,7 +67,8 @@ function Reivewformpart() {
 
           <div className='form-rating'>
             <p>Rating</p>
-            <Image src='/rating 4.png' width={100} height={20} alt='rating'/>
+            {/* <Image src='/rating 4.png' width={100} height={20} alt='rating'/> */}
+            <ReviewStar reviewClick={reVal} reviewCount={setReVal} />
           </div>
 
           <div>
