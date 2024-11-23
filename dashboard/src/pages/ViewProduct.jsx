@@ -8,7 +8,8 @@ const ViewProduct = () => {
   let [catlist, setcatlist] = useState([]);
 
     useEffect(()=>{
-        async function allcat(){
+      
+        async function allcat() {
           
          let data = await axios.get("http://localhost:8000/api/v1/product/allpro");
  
@@ -43,7 +44,9 @@ const ViewProduct = () => {
          });
           setcatlist(catedata);
         }
+
         allcat();
+
        },[])
 
 
