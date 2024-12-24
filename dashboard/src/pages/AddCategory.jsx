@@ -31,7 +31,6 @@ const AddCategory = () => {
             token : userInfo.token
           }
          }
-         
         )
 
       setLoading(false);

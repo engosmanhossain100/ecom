@@ -8,17 +8,17 @@ import Image from 'next/image'
 import Button from '../button'
 
 async function getData() {
+
     let data = await fetch('http://localhost:8000/api/v1/product/allpro')
     .then((res)=>
     res.json()
     )
   
     return data;
+    
   }
 
-
 async function Toprateproduct () {
-
     
     let data = await getData();
 

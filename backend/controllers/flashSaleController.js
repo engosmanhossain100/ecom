@@ -17,6 +17,7 @@ async function flashSaleController (req, res) {
             time: ftime,
             idlist : idlist
         }).save()
+        
         // res.send({success : "Subcategory Created Successfully"})
     }
 

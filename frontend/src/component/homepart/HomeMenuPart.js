@@ -7,8 +7,19 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+async function getData() {
+    let data = await fetch('http://localhost:8000/api/v1/product/allcart')
+    .then((res)=>
+    res.json()
+    )
+  
+    return data;
+  }
 
-function HomeMenuBar() {
+async function HomeMenuBar() {
+    
+    let data = await getData();
+
   return (
     <div className='menubar'>
         <div className='prjt-name'>
@@ -46,7 +57,7 @@ function HomeMenuBar() {
         <div className='shopping-element'>
             <div className='shopping-icon'> 
                 <MdOutlineShoppingBag/>
-                <div className='number'><p>99</p></div>
+                <div className='number'><p>{data.length}</p></div>
             </div>
             <div className='shopping-icon'>
                 <MdMailOutline/>

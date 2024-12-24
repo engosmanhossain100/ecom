@@ -9,7 +9,7 @@ const Category = async () => {
     <>
       <Container>
         <div className="category_item">
-         <h4>Categoryaaaaaaa</h4>
+         <h4>Category</h4>
         <div className="category">
           {categoryData.map((category, index) => (
             <div key={index} className="item">

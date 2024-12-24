@@ -1,11 +1,20 @@
 'use client'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
-import { cartData } from './cartdata';
 
-function Cartleft() {
+// async function getData() {
+//     let data = await fetch('http://localhost:8000/api/v1/product/allcart')
+//     .then((res)=>
+//     res.json()
+//     )
+  
+//     return data;
+//   }
+ function Cartleft() {
+
     const [count, setCount] = useState(0)
+    const [cartData,setCartData] = useState([])
 
     const handleMinus = () => {
         setCount(count - 1)
@@ -18,6 +27,21 @@ function Cartleft() {
         setCount(count + 1)
     }
 
+    useEffect(()=>{
+         function allcart() {
+
+                const data = fetch('http://localhost:8000/api/v1/product/allcart')
+                .then((res)=>{
+                    res.json().then((data)=>{
+                        setCartData (data)
+                    })
+                }
+                
+                )
+        }
+        allcart()
+    },[])
+
   return (
     <div className='cart-left-part'>
         <div className='chec-box'>
@@ -27,16 +51,18 @@ function Cartleft() {
         {
             cartData.map((item, i)=>(
                 <div className='cart-items' key={i}>
+
                     <div className='select'>
                         <input type='checkbox' id='select'/>
                     </div>
+
                     <div className='details'>
                         <div className='cart-imgs'>
-                            <Image src={item.img} width={130} height={130} alt='cart-img'/>
+                            <Image src={`http://localhost:8000${item.productId.image[0]}`} width={130} height={130} alt='cart-img'/>
                         </div>
                         <div className='item-name-price'>
-                            <h3>{item.proname}</h3>
-                            <p>{item.proprice}</p>
+                            <h3>{item.productId.name}</h3>
+                            <p>{item.discount}</p>
                             <div className='count'>
                                 <div className='minus' onClick={handleMinus}>-</div>
                                 <div className='numbers'>{count}</div>

@@ -12,9 +12,11 @@ function Cart() {
                 <li className='brdcmb-list'>My Cart</li>
             </ul>
         </div>
+
         <div className='cart-head'>
             <h3>My Cart</h3>
         </div>
+
         <div className='cart-checkout'>
           <div className='carts'>
             <div className='one'>1</div>
@@ -25,13 +27,17 @@ function Cart() {
             <p>checkout</p>
           </div>
         </div>
+
         <div className='cart-details'>
+
           <div className='cart-left'>
             <Cartleft/>
           </div>
+          
           <div className='cart-right'>
             <Cartright/>
           </div>
+
         </div>
     </div>
   )

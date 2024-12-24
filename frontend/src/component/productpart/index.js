@@ -12,7 +12,6 @@ async function getData(slug) {
   )
 
   return data;
-  
 }
 
 async function ProductPart({slug}) {

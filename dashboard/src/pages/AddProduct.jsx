@@ -66,7 +66,6 @@ const AddProduct = () => {
 
       image.forEach(file=>{
         formData.append("photos", file)
-      
       })
 
       try{
@@ -130,6 +129,7 @@ const AddProduct = () => {
 
       useEffect(()=>{
         async function allcat(){
+
          let data = await axios.get("http://localhost:8000/api/v1/product/allcat");
  
          let catedata= []
@@ -142,7 +142,9 @@ const AddProduct = () => {
          });
           setcatlist(catedata);
         }
+
         allcat();
+        
        },[])
 
 

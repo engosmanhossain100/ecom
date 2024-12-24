@@ -31,25 +31,25 @@ const FlashSale = () => {
         setDate(`${yearname[month]} ${date}, ${year}`) 
     }
 
+    let handleTimeChange = (e) => {
+        setTime(e.target.value)
+    };  
 
     const [options, setOptions] = useState({});
     const [idlist, setIdList] = useState("");
     const [size, setSize] = useState('middle');
 
-    const handleSizeChange = (e) => {
-      setSize(e.target.value);
-    };
-
     const handleChange = (value) => {
-      setIdList(value)
-    };
+        setIdList(value)
+      };
 
-    let handleTimeChange = (e) => {
-        setTime(e.target.value)
-    };
-
+    const handleSizeChange = (e) => {
+        setSize(e.target.value);
+      };
+  
     useEffect(()=>{
         async function pro() {
+
             let data = await axios.get("http://localhost:8000/api/v1/product/allpro")
 
             let arr = [];
@@ -69,12 +69,12 @@ const FlashSale = () => {
 
     let handleSubmit = async () => {
         let data = await axios.post('http://localhost:8000/api/v1/product/allpro',{
-            ftime:date + " " + time,
+            ftime: date + " " + time,
             idlist: idlist
         })
     }
-
   
+    
     return (
         <>
         <input onChange={handleDateChange} type="date" />

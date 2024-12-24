@@ -4,7 +4,6 @@ let deleteCategory = async (req, res) => {
 
     await Category.findOneAndDelete(req.params.id);
 
-    
     res.send("delete category")
 
 };

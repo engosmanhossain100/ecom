@@ -20,9 +20,6 @@ function Reivewformpart({data}) {
     validationSchema: reviewform,
 
     onSubmit : async values => {
-
-      console.log(data ,"asdkjaskjd");
-      
  
       const rawResponse = await fetch('http://localhost:8000/api/v1/product/review', {
         method: 'POST',
@@ -67,7 +64,6 @@ function Reivewformpart({data}) {
 
           <div className='form-rating'>
             <p>Rating</p>
-            {/* <Image src='/rating 4.png' width={100} height={20} alt='rating'/> */}
             <ReviewStar reviewClick={reVal} reviewCount={setReVal} />
           </div>
 

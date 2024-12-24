@@ -1,7 +1,11 @@
 import Cartpart from '@/component/cartpart'
 import React from 'react'
 
-function CartPage() {
+
+
+async function CartPage() {
+
+
   return (
     <div>
       <Cartpart/>
