@@ -9,7 +9,11 @@ const ViewProduct = () => {
 
     useEffect(()=>{
       
+<<<<<<< HEAD
         async function allcat(){
+=======
+        async function allcat() {
+>>>>>>> 14915edc5044c8010f65028042f0682c040d942a
           
          let data = await axios.get("http://localhost:8000/api/v1/product/allpro");
  
@@ -47,6 +51,7 @@ const ViewProduct = () => {
         }
 
         allcat();
+
        },[])
 
 
