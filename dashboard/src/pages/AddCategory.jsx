@@ -34,7 +34,7 @@ const AddCategory = () => {
         )
 
       setLoading(false);
-      toast.success( "category create successfully", {
+      toast.success( "category created successfully", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
