@@ -11,14 +11,14 @@ import TopRateProduct from './toprateproduct'
 import FooterElements from './footerelements'
 import Container from '../container/Container'
 
-// async function getData() {
-//   let data = await fetch('http://localhost:8000/api/v1/product/allflash')
-//   .then((res)=>
-//   res.json()
-//   )
+async function getData() {
+  let data = await fetch('http://localhost:8000/api/v1/product/allflash')
+  .then((res)=>
+  res.json()
+  )
 
-//   return data;
-// }
+  return data;
+}
 
 async function Homepart() {
 

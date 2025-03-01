@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import React from 'react'
 import Images from 'next/image'
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -6,8 +6,8 @@ import { flashsale } from './categoryData';
 import Slider from "react-slick";
 import Image from 'next/image';
 
-{/* <div className='flash-sec-part'>
-{flashsale.map((item, i)=>(
+ <div className='flash-sec-part'>
+{/* {flashsale.map((item, i)=>(
     <div className='sec-items'>
         <Images src={item.img} width={500} height={350} alt='flashSale' />
         <div className='flash-tag'>
@@ -24,8 +24,9 @@ import Image from 'next/image';
             <ProgressBar variant="danger" now={80} />
         </div>
     </div>
-))}
-</div> */}
+))} */}
+
+</div> 
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;

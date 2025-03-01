@@ -17,6 +17,9 @@ function Productdetailsright({data}) {
     setCount(count + 1)
   }
 
+  console.log(data);
+  
+
   return (
     <div className='prdct-dtls-right'>
       <div className='breadcrumb'>

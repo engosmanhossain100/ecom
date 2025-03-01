@@ -1,46 +1,48 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Images from 'next/image'
 import { commentdata } from './productdata'
+import axios from 'axios'
 
-async function getData() {
-    let data = await fetch('http://localhost:8000/api/v1/product/review/66e5ce230436620b08e0b0bd')
-    .then((res)=>
-    res.json()
-    )
-  
-    return data;
-  }
+function Reviewpart({data}) {
 
+    let [review, setReview] = useState([])
 
-async function Reviewpart({data}) {
-
-    let datas = await getData()
+    useEffect(() => {
+        function getReview() {
+            axios.get(`http://localhost:8000/api/v1/product/review/${data[0]._id}`)
+                .then((response) => {
+                setReview(response.data.data)
+            })
+        }
+        getReview()
+    }, [])
     
-    console.log(datas, "hlw ami data");
+    console.log(review);
     
 
   return (
     <div className='review-part'>
         <div className='review-tag'>
-            {/* <p>({datas.data.length})Review</p> */}
+            <p>({review.length})Review</p>
             <p>Description</p>
             <p>Discusion</p>
             <p>Gift Cards</p>
         </div>
         <div className='comment-list' >
-            {/* {
-                datas?.data.map((item, i)=>(
+            {
+                review.map((item, i)=>(
                     <div className='tag-comment' key={i}>
                         <div className='cmnt-element'>
                             <div className='cmnt-img-rate'>
                                 <div className='img'>
-                                    <Images src={item.img} width={56} height={56} alt='comment-img'/>
+                                    <img src={item.img} width={56} height={56} alt='comment-img'/>
                                 </div>
                                 <div className='review-text'>
                                     <h4>{item.name}</h4>
                                     <div className='rating'>
                                         <p>{item.rating}</p>
-                                        <Images src={item.cmntrateimg} width={100} height={20} alt='review'/>
+                                        <img src={item.cmntrateimg} width={100} height={20} alt='review'/>
                                         <p className='rate-timing'>{item.time}</p>
                                     </div>
                                 </div>
@@ -51,7 +53,7 @@ async function Reviewpart({data}) {
                             </p>
                     </div>
                 ))
-            } */}
+            }
         </div>
 
     </div>

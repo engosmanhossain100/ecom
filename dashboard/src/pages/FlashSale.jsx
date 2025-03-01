@@ -68,7 +68,7 @@ const FlashSale = () => {
     },[])
 
     let handleSubmit = async () => {
-        let data = await axios.post('http://localhost:8000/api/v1/product/allpro',{
+        let data = await axios.post('http://localhost:8000/api/v1/product/flashsale',{
             ftime: date + " " + time,
             idlist: idlist
         })
@@ -79,7 +79,7 @@ const FlashSale = () => {
         <>
         <input onChange={handleDateChange} type="date" />
         <input onChange={handleTimeChange} type="time" />
-        <button onChange={handleSubmit} type="data">Submit</button> 
+        <button onClick={handleSubmit} type="data">Submit</button> 
 
         <Select
           mode="multiple"

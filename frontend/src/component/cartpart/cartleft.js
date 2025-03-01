@@ -1,16 +1,16 @@
-'use client'
+// 'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
 
-// async function getData() {
-//     let data = await fetch('http://localhost:8000/api/v1/product/allcart')
-//     .then((res)=>
-//     res.json()
-//     )
+async function getData() {
+    let data = await fetch('http://localhost:8000/api/v1/product/allcart')
+    .then((res)=>
+    res.json()
+    )
   
-//     return data;
-//   }
+    return data;
+  }
  function Cartleft() {
 
     const [count, setCount] = useState(0)
@@ -58,7 +58,7 @@ import { RxCross2 } from "react-icons/rx";
 
                     <div className='details'>
                         <div className='cart-imgs'>
-                            <Image src={`http://localhost:8000${item.productId.image[0]}`} width={130} height={130} alt='cart-img'/>
+                            <img src={`http://localhost:8000${item.productId.image[0]}`} width={130} height={130} alt='cart-img'/>
                         </div>
                         <div className='item-name-price'>
                             <h3>{item.productId.name}</h3>

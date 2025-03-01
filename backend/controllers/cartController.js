@@ -31,8 +31,7 @@ let cartController = async (req, res) => {
             productId:productId,
             userId:userId,
             quantity: quantity ? quantity : 1
-        })
-        Cart.save()
+        }).save()
         res.send({success : "Cart Added Successfully"})
     }
 

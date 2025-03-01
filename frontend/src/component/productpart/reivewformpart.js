@@ -51,13 +51,11 @@ function Reivewformpart({data}) {
           <label>Name*</label>
           <input type='text' placeholder='Type Your Name..' onChange={formik.handleChange} name='name' value={formik.values.name}/>
           {errors.name && touched.name && <p className='cmnt-errors'>{errors.name}</p>}
-
           
           <label>Email*</label>
           <input type='email' placeholder='Type Your Email..' onChange={formik.handleChange} name='email' value={formik.values.email}/>
           {errors.email && touched.email && <p className='cmnt-errors'>{errors.email}</p>}
 
-          
           <label>Comment*</label>
           <textarea type='text' placeholder='Type Your Comment..' onChange={formik.handleChange} name='comment' value={formik.values.comment}/>
           {errors.comment && touched.comment && <p className='cmnt-errors'>{errors.comment}</p>}
