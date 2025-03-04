@@ -16,8 +16,7 @@ async function getData() {
 async function Collection() {
 
     let data = await getData();
-    console.log(data);
-
+ 
   return (
     <div className='collection-part'>
       <div className='coll-item'>

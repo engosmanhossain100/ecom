@@ -1,3 +1,4 @@
+// 'use client'
 import React from 'react'
 import HomeTopBar from './hometopbar'
 import Hero from './heropart'
@@ -12,7 +13,7 @@ import FooterElements from './footerelements'
 import Container from '../container/Container'
 
 async function getData() {
-  let data = await fetch('http://localhost:8000/api/v1/product/allflash')
+  let data = await fetch('http://localhost:8000/api/v1/product/allflashsale')
   .then((res)=>
   res.json()
   )
@@ -22,7 +23,7 @@ async function getData() {
 
 async function Homepart() {
 
-  // let data = await getData();
+  let data = await getData();
 
   return (
     <div>
@@ -31,7 +32,7 @@ async function Homepart() {
         <Hero/>
         <Category/>
         <NewArraivals/>
-        {/* <FlashSale time={data[0]?.time}/> */}
+        <FlashSale time={data[0]?.time}/>
         <FlashSale />
         <Companyname/>
         <Quality/>

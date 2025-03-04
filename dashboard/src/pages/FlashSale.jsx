@@ -70,7 +70,7 @@ const FlashSale = () => {
     let handleSubmit = async () => {
         let data = await axios.post('http://localhost:8000/api/v1/product/flashsale',{
             ftime: date + " " + time,
-            idlist: idlist
+            productId: idlist
         })
     }
   

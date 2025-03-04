@@ -3,7 +3,14 @@ const {Schema} = mongoose
 
 const flashSaleSchema = new Schema ({
     time : String,
-    idlist : [String]
+    // idlist : String,
+    productId:[
+        {
+            type: Schema.Types.ObjectId,
+            ref:"Product" 
+        }
+    ]
+
 });
 
 module.exports = mongoose.model("FlashSale", flashSaleSchema);

@@ -2,7 +2,7 @@ const FlashSale = require("../model/flashSaleModel");
 
 async function flashSaleController (req, res) {
 
-    const {ftime, idlist} = req.body;
+    const {ftime, productId} = req.body;
 
     // let arr = idlist.split(",");
 
@@ -15,10 +15,8 @@ async function flashSaleController (req, res) {
     } else {
         let time = new FlashSale ({
             time: ftime,
-            idlist : idlist
+            productId : productId
         }).save()
-        
-        // res.send({success : "Subcategory Created Successfully"})
     }
 
 }

@@ -22,9 +22,11 @@ async function HomeMenuBar() {
 
   return (
     <div className='menubar'>
+
         <div className='prjt-name'>
             <h2>Tronix</h2>
         </div>
+
         <div className='all-menu'>
                 <Navbar expand="lg">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -46,6 +48,7 @@ async function HomeMenuBar() {
                     </Navbar.Collapse>
                 </Navbar>
         </div>
+
         <div className='search-bar'>
             <div className='search-box'>
                 <input type='text' placeholder='Search your item..'/>
@@ -54,6 +57,7 @@ async function HomeMenuBar() {
                 </div>
             </div>
         </div>
+
         <div className='shopping-element'>
             <div className='shopping-icon'> 
                 <MdOutlineShoppingBag/>
@@ -63,6 +67,7 @@ async function HomeMenuBar() {
                 <MdMailOutline/>
             </div>
         </div>
+        
     </div>
   )
 }

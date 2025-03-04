@@ -33,6 +33,8 @@ const allCartController = require('../../controllers/allCartController.js');
 const flashSaleController = require('../../controllers/flashSaleController.js');
 const reviewController = require('../../controllers/reviewController.js');
 const getReviewController = require('../../controllers/getReviewController.js');
+const getFlashsaleController = require('../../controllers/getFlashsaleController.js');
+const allFlashsaleController = require('../../controllers/allFlashsaleController.js');
 
 
 
@@ -55,5 +57,7 @@ route.get('/singlepro/:slug', singlePro);
 route.get('/singlesubcat/:id', singleSubCat);
 route.get('/allcart', allCartController);
 route.get('/review/:id', getReviewController);
+route.get('/flashsale', getFlashsaleController);
+route.get('/allflashsale', allFlashsaleController);
 
 module.exports = route

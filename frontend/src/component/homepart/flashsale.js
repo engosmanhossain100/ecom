@@ -1,17 +1,36 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { useCountdown } from 'react-countdown-circle-timer'
 import Flashsalesecpart from './flashsalesecpart'
+import axios from 'axios'
 
 function FlashSale({time}) {
 
-    let [endTime, setEndTime] = useState(time)
+    let [endtime, setEndTime] = useState(time)
+    let [flashsaleProduct, setFlashsaleProduct] = useState([])
+
+    useEffect(() => {
+        function getFlash() {
+            axios.get(`http://localhost:8000/api/v1/product/flashsale`)
+                .then((res) => {
+                    console.log(res);
+                    
+                    setEndTime(res.data.time);
+                    setFlashsaleProduct(res.data.productId)
+            })
+        }
+        getFlash()
+    }, [])
+    
+
+    console.log(flashsaleProduct);
+    
 
 
     const stratTime = Date.now() / 1000;
-    const endTimeStamp = new Date(endTime).getTime() / 1000
+    const endTimeStamp = new Date(endtime).getTime() / 1000
 
     const remainingTime = endTimeStamp - stratTime
 
@@ -115,7 +134,7 @@ function FlashSale({time}) {
             </div>
         </div>
         <div>
-            <Flashsalesecpart/>
+            <Flashsalesecpart />
         </div>
     </div>
   )
