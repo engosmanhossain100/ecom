@@ -6,9 +6,9 @@ import { useCountdown } from 'react-countdown-circle-timer'
 import Flashsalesecpart from './flashsalesecpart'
 import axios from 'axios'
 
- function FlashSale({time}) {
+ function FlashSale({sec}) {
 
-    let [endtime, setEndTime] = useState(time)
+    let [endtime, setEndTime] = useState("Mar 25, 2025 00:00:00")
     let [flashsaleProduct, setFlashsaleProduct] = useState([])
 
     useEffect(() => {
