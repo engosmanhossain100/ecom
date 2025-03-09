@@ -17,7 +17,6 @@ function Productdetailsright({data}) {
     setCount(count + 1)
   }
 
-  console.log(data);
   
 
   return (

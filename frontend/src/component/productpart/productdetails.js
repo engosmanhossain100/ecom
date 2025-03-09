@@ -123,9 +123,11 @@ function Productdetails({data}) {
                     </div>
 
                 </div>
+
             <div className='prdct-details'>
                 <Productdetailsright data={data}/>
             </div>
+            
             </div>
         </div>
   )

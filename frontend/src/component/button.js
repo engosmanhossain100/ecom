@@ -1,4 +1,4 @@
-"use client"
+
 import React from 'react'
 
 const Button = ({item}) => {
@@ -14,8 +14,8 @@ const Button = ({item}) => {
             // Adding body or contents to send
             body: JSON.stringify({
                 productId: id,
-                userId: "673b9a729b7650570f6feab7",
-            quantity: quantity ? quantity : 1
+                userId: "67c6e8b41ac230abcf299afd",
+                quantity: quantity ? quantity : 1
             }),
             
             // Adding headers to the request
@@ -23,6 +23,9 @@ const Button = ({item}) => {
                 "Content-type": "application/json; charset=UTF-8"
             }
         })
+
+        .then(response => response.json())
+        .then(json => console.log(json));
         
     }
 

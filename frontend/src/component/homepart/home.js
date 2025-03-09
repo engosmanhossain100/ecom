@@ -1,5 +1,5 @@
-// 'use client'
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import HomeTopBar from './hometopbar'
 import Hero from './heropart'
 import Category from './category'
@@ -11,33 +11,37 @@ import Collection from './collection'
 import TopRateProduct from './toprateproduct'
 import FooterElements from './footerelements'
 import Container from '../container/Container'
+import axios from 'axios'
 
-async function getData() {
-  let data = await fetch('http://localhost:8000/api/v1/product/allflashsale')
-  .then((res)=>
-  res.json()
-  )
+function Homepart () {
 
-  return data;
-}
-
-async function Homepart() {
-
-  let data = await getData();
+  useEffect(()=> {
+     function getData () {
+       axios.get('http://localhost:8000/api/v1/product/allflashsale').then((data)=>{
+        console.log(data);
+        
+       })
+    }
+    getData()
+  },[])
 
   return (
     <div>
       <Container>
+
+
         <HomeTopBar/>
         <Hero/>
         <Category/>
         <NewArraivals/>
-        <FlashSale time={data[0]?.time}/>
         <FlashSale />
+        {/* <FlashSale time={data.data[0]?.time}/> */}
         <Companyname/>
         <Quality/>
         <Collection/>
-        <TopRateProduct/>
+        {/* <TopRateProduct/> */}
+
+
       </Container>
       <FooterElements/>
     </div>

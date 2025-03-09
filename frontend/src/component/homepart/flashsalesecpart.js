@@ -6,27 +6,27 @@ import { flashsale } from './categoryData';
 import Slider from "react-slick";
 import Image from 'next/image';
 
- <div className='flash-sec-part'>
-{/* {flashsale.map((item, i)=>(
-    <div className='sec-items'>
-        <Images src={item.img} width={500} height={350} alt='flashSale' />
-        <div className='flash-tag'>
-            <p>{item.discount}</p>
-        </div>
-        <div className='flash-sec-text'>
-            <h3>{item.device}</h3>
-            <span className='ban-num'>{item.banname}</span>
-            <span className='current-num'>{item.curname}</span>
-            <div className='available-sold'>
-                <p>{item.available}</p>
-                <p>{item.sold}</p>
-            </div>
-            <ProgressBar variant="danger" now={80} />
-        </div>
-    </div>
-))} */}
+//  <div className='flash-sec-part'>
+// {flashsale.map((item, i)=>(
+//     <div className='sec-items'>
+//         <Images src={item.img} width={500} height={350} alt='flashSale' />
+//         <div className='flash-tag'>
+//             <p>{item.discount}</p>
+//         </div>
+//         <div className='flash-sec-text'>
+//             <h3>{item.device}</h3>
+//             <span className='ban-num'>{item.banname}</span>
+//             <span className='current-num'>{item.curname}</span>
+//             <div className='available-sold'>
+//                 <p>{item.available}</p>
+//                 <p>{item.sold}</p>
+//             </div>
+//             <ProgressBar variant="danger" now={80} />
+//         </div>
+//     </div>
+// ))}
 
-</div> 
+// </div> 
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -39,7 +39,7 @@ function SampleNextArrow(props) {
     );
   }
 
-function Flashsalesecpart() {
+function Flashsalesecpart({flashsaleProduct}) {
     const settings = {
         dots: false,
         infinite: true,
@@ -52,18 +52,22 @@ function Flashsalesecpart() {
     <>
 
         <div className='mt-5'><Slider {...settings}>
-        <div className='flash-sec-part'>
+
+           <div>
+           {
+                flashsaleProduct.map((item,i)=>(
+                    <div key={i} className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
                     <Image src='/arraivals 1.png' width={500} height={350} alt='flashSale' />
                 </a>
                 <div className='flash-tag'>
-                    <p>45% OFF</p>
+                    <p> % {item.regularprice - item.discount}</p>
                 </div>
                 <div className='flash-sec-text'>
-                    <h3>Wireless Headphone</h3>
-                    <span className='ban-num'>$29.99</span>
-                    <span className='current-num'> - $19.99</span>
+                    <h3>{item.name}</h3>
+                    <span className='ban-num'>{item.regularprice}</span>
+                    <span className='current-num'>{item.discount}</span>
                     <div className='available-sold'>
                         <p>Available: 10</p>
                         <p>Sold: 5</p>
@@ -72,7 +76,12 @@ function Flashsalesecpart() {
                 </div>
             </div>
         </div>
-        <div className='flash-sec-part'>
+                ))
+            }
+           </div>
+
+        
+        {/* <div className='flash-sec-part'>
             <div className='sec-items'>
                 <a href='/pages/product'>
                     <Image src='/arraivals 7.png' width={500} height={350} alt='flashSale' />
@@ -171,7 +180,7 @@ function Flashsalesecpart() {
                         <ProgressBar variant="danger" now={80} />
                     </div>
                 </div>
-            </div>
+            </div> */}
       </Slider>
     </div>
     </>

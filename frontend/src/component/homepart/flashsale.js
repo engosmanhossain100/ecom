@@ -6,7 +6,7 @@ import { useCountdown } from 'react-countdown-circle-timer'
 import Flashsalesecpart from './flashsalesecpart'
 import axios from 'axios'
 
-function FlashSale({time}) {
+ function FlashSale({time}) {
 
     let [endtime, setEndTime] = useState(time)
     let [flashsaleProduct, setFlashsaleProduct] = useState([])
@@ -26,8 +26,9 @@ function FlashSale({time}) {
     
 
     console.log(flashsaleProduct);
+    console.log(endtime);
     
-
+    
 
     const stratTime = Date.now() / 1000;
     const endTimeStamp = new Date(endtime).getTime() / 1000
@@ -134,7 +135,7 @@ function FlashSale({time}) {
             </div>
         </div>
         <div>
-            <Flashsalesecpart />
+            <Flashsalesecpart flashsaleProduct={flashsaleProduct} />
         </div>
     </div>
   )
